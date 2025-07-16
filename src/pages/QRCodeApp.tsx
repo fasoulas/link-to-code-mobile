@@ -25,7 +25,7 @@ export default function QRCodeApp() {
       isActive: urls.length === 0 // First URL becomes active automatically
     };
 
-    setUrls(prev => prev.map(url => ({ ...url, isActive: false })).concat(newUrl));
+    setUrls(prev => prev.concat(newUrl));
   };
 
   const updateUrl = (id: string, urlData: UrlFormData) => {
