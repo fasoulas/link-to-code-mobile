@@ -82,32 +82,32 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      {!activeUrl && (
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Show Code</h1>
-          <Button 
-            onClick={onAddUrl}
-            className="flex items-center space-x-2"
-          >
-            <Plus className="h-4 w-4" />
-            <span>Add URL</span>
-          </Button>
-        </div>
-      )}
-
+    <>
       {!activeUrl ? (
-        <div className="flex items-center justify-center h-96">
-          <div className="text-center">
-            <div className="text-6xl mb-4">📱</div>
-            <h2 className="text-xl font-semibold mb-2">No Active URL</h2>
-            <p className="text-muted-foreground">
-              Add a URL to generate a QR code
-            </p>
+        <div className="p-4 max-w-2xl mx-auto">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-bold">Show Code</h1>
+            <Button 
+              onClick={onAddUrl}
+              className="flex items-center space-x-2"
+            >
+              <Plus className="h-4 w-4" />
+              <span>Add URL</span>
+            </Button>
+          </div>
+          
+          <div className="flex items-center justify-center h-96">
+            <div className="text-center">
+              <div className="text-6xl mb-4">📱</div>
+              <h2 className="text-xl font-semibold mb-2">No Active URL</h2>
+              <p className="text-muted-foreground">
+                Add a URL to generate a QR code
+              </p>
+            </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center bg-qr-background">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-qr-background px-4">
           <Card className="p-8 bg-qr-background border-border shadow-lg">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold mb-2 text-qr-foreground">{activeUrl.title}</h2>
@@ -157,6 +157,6 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
           </Card>
         </div>
       )}
-    </div>
+    </>
   );
 }
