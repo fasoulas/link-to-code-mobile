@@ -81,15 +81,11 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
     }
   };
 
-  if (!activeUrl) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="text-center">
-          <div className="text-6xl mb-4">📱</div>
-          <h2 className="text-xl font-semibold mb-2">No Active URL</h2>
-          <p className="text-muted-foreground mb-4">
-            Add a URL to generate a QR code
-          </p>
+  return (
+    <div className="p-4 max-w-2xl mx-auto">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold">Show Code</h1>
+        {!activeUrl && (
           <Button 
             onClick={onAddUrl}
             className="flex items-center space-x-2"
@@ -97,60 +93,70 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
             <Plus className="h-4 w-4" />
             <span>Add URL</span>
           </Button>
-        </div>
+        )}
       </div>
-    );
-  }
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-qr-background p-4">
-      <Card className="p-8 bg-qr-background border-border shadow-lg">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold mb-2 text-qr-foreground">{activeUrl.title}</h1>
-          <p className="text-sm text-muted-foreground break-all">{activeUrl.url}</p>
-        </div>
-        
-        <div className="flex justify-center mb-6">
-          <div className="p-4 bg-qr-background rounded-lg border">
-            <canvas 
-              ref={canvasRef}
-              className="block"
-            />
+      {!activeUrl ? (
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <div className="text-6xl mb-4">📱</div>
+            <h2 className="text-xl font-semibold mb-2">No Active URL</h2>
+            <p className="text-muted-foreground">
+              Add a URL to generate a QR code
+            </p>
           </div>
         </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center bg-qr-background">
+          <Card className="p-8 bg-qr-background border-border shadow-lg">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold mb-2 text-qr-foreground">{activeUrl.title}</h2>
+              <p className="text-sm text-muted-foreground break-all">{activeUrl.url}</p>
+            </div>
+            
+            <div className="flex justify-center mb-6">
+              <div className="p-4 bg-qr-background rounded-lg border">
+                <canvas 
+                  ref={canvasRef}
+                  className="block"
+                />
+              </div>
+            </div>
 
-        <div className="flex justify-center space-x-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={shareUrl}
-            className="flex items-center space-x-2"
-          >
-            <Share className="h-4 w-4" />
-            <span>Share</span>
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={copyToClipboard}
-            className="flex items-center space-x-2"
-          >
-            <Copy className="h-4 w-4" />
-            <span>Copy</span>
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={downloadQRCode}
-            className="flex items-center space-x-2"
-          >
-            <Download className="h-4 w-4" />
-            <span>Download</span>
-          </Button>
+            <div className="flex justify-center space-x-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={shareUrl}
+                className="flex items-center space-x-2"
+              >
+                <Share className="h-4 w-4" />
+                <span>Share</span>
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={copyToClipboard}
+                className="flex items-center space-x-2"
+              >
+                <Copy className="h-4 w-4" />
+                <span>Copy</span>
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={downloadQRCode}
+                className="flex items-center space-x-2"
+              >
+                <Download className="h-4 w-4" />
+                <span>Download</span>
+              </Button>
+            </div>
+          </Card>
         </div>
-      </Card>
+      )}
     </div>
   );
 }
