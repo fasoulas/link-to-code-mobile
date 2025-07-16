@@ -83,9 +83,9 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Show Code</h1>
-        {!activeUrl && (
+      {!activeUrl && (
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold">Show Code</h1>
           <Button 
             onClick={onAddUrl}
             className="flex items-center space-x-2"
@@ -93,8 +93,8 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
             <Plus className="h-4 w-4" />
             <span>Add URL</span>
           </Button>
-        )}
-      </div>
+        </div>
+      )}
 
       {!activeUrl ? (
         <div className="flex items-center justify-center h-96">
