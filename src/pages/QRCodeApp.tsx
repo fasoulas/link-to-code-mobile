@@ -58,9 +58,25 @@ export default function QRCodeApp() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="sticky top-0 z-10 bg-background border-b">
+    <div className="min-h-screen bg-background flex flex-col">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col min-h-screen">
+        <div className="flex-1 overflow-y-auto">
+          <TabsContent value="qr-code" className="mt-0 h-full">
+            <QRCodeGenerator activeUrl={activeUrl} />
+          </TabsContent>
+
+          <TabsContent value="management" className="mt-0 h-full">
+            <UrlManagement
+              urls={urls}
+              onAddUrl={addUrl}
+              onUpdateUrl={updateUrl}
+              onDeleteUrl={deleteUrl}
+              onSetActiveUrl={setActiveUrl}
+            />
+          </TabsContent>
+        </div>
+
+        <div className="sticky bottom-0 z-10 bg-background border-t">
           <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
             <TabsTrigger value="qr-code" className="flex items-center space-x-2">
               <QrCode className="h-4 w-4" />
@@ -72,20 +88,6 @@ export default function QRCodeApp() {
             </TabsTrigger>
           </TabsList>
         </div>
-
-        <TabsContent value="qr-code" className="mt-0">
-          <QRCodeGenerator activeUrl={activeUrl} />
-        </TabsContent>
-
-        <TabsContent value="management" className="mt-0">
-          <UrlManagement
-            urls={urls}
-            onAddUrl={addUrl}
-            onUpdateUrl={updateUrl}
-            onDeleteUrl={deleteUrl}
-            onSetActiveUrl={setActiveUrl}
-          />
-        </TabsContent>
       </Tabs>
     </div>
   );
