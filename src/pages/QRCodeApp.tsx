@@ -57,12 +57,23 @@ export default function QRCodeApp() {
     })));
   };
 
+  const handleAddUrl = () => {
+    setActiveTab('management');
+    // Use setTimeout to allow tab switch to complete before triggering add mode
+    setTimeout(() => {
+      const addButton = document.querySelector('[data-add-url-trigger]') as HTMLButtonElement;
+      if (addButton) {
+        addButton.click();
+      }
+    }, 100);
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col min-h-screen">
         <div className="flex-1 overflow-y-auto">
           <TabsContent value="qr-code" className="mt-0 h-full">
-            <QRCodeGenerator activeUrl={activeUrl} />
+            <QRCodeGenerator activeUrl={activeUrl} onAddUrl={handleAddUrl} />
           </TabsContent>
 
           <TabsContent value="management" className="mt-0 h-full">

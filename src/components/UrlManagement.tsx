@@ -99,6 +99,7 @@ export function UrlManagement({
           onClick={() => setIsAdding(true)}
           className="flex items-center space-x-2"
           disabled={isAdding || editingId !== null}
+          data-add-url-trigger
         >
           <Plus className="h-4 w-4" />
           <span>Add URL</span>

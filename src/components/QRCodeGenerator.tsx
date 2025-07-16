@@ -2,15 +2,16 @@ import { useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import { Card } from '@/components/ui/card';
 import { SavedUrl } from '@/types/url';
-import { Share, Copy, Download } from 'lucide-react';
+import { Share, Copy, Download, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
 interface QRCodeGeneratorProps {
   activeUrl: SavedUrl | null;
+  onAddUrl: () => void;
 }
 
-export function QRCodeGenerator({ activeUrl }: QRCodeGeneratorProps) {
+export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { toast } = useToast();
 
@@ -86,9 +87,16 @@ export function QRCodeGenerator({ activeUrl }: QRCodeGeneratorProps) {
         <div className="text-center">
           <div className="text-6xl mb-4">📱</div>
           <h2 className="text-xl font-semibold mb-2">No Active URL</h2>
-          <p className="text-muted-foreground">
-            Add a URL in the Management tab to generate a QR code
+          <p className="text-muted-foreground mb-4">
+            Add a URL to generate a QR code
           </p>
+          <Button 
+            onClick={onAddUrl}
+            className="flex items-center space-x-2"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Add URL</span>
+          </Button>
         </div>
       </div>
     );
