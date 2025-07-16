@@ -149,14 +149,14 @@ export function UrlManagement({
       )}
 
       <div className="space-y-3">
-        {urls.length === 0 ? (
+        {urls.length === 0 && !isAdding ? (
           <div className="flex items-center justify-center h-96">
             <div className="text-center">
               <div className="text-4xl mb-4">📝</div>
               <p className="text-muted-foreground">No URLs saved yet. Add your first URL!</p>
             </div>
           </div>
-        ) : (
+        ) : urls.length > 0 ? (
           urls.map((url) => (
             <Card key={url.id} className={`${url.isActive ? 'ring-2 ring-primary' : ''}`}>
               <CardContent className="p-4">
@@ -210,7 +210,7 @@ export function UrlManagement({
               </CardContent>
             </Card>
           ))
-        )}
+        ) : null}
       </div>
     </div>
   );
