@@ -69,7 +69,7 @@ export default function QRCodeApp() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col pt-safe-top">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col min-h-screen">
         <div className="flex-1 overflow-y-auto">
           <TabsContent value="qr-code" className="mt-0 h-full">
@@ -87,7 +87,7 @@ export default function QRCodeApp() {
           </TabsContent>
         </div>
 
-        <div className="sticky bottom-0 z-10 bg-background border-t">
+        <div className="sticky bottom-0 z-10 bg-background border-t pb-safe-bottom">
           <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
             <TabsTrigger value="qr-code" className="flex items-center space-x-2">
               <QrCode className="h-4 w-4" />
