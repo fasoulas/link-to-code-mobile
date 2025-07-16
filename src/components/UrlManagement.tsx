@@ -27,9 +27,17 @@ export function UrlManagement({
   const [formData, setFormData] = useState<UrlFormData>({ url: '', title: '' });
   const { toast } = useToast();
 
+  const normalizeUrl = (url: string): string => {
+    const trimmed = url.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+      return trimmed;
+    }
+    return `https://${trimmed}`;
+  };
+
   const validateUrl = (url: string): boolean => {
     try {
-      new URL(url);
+      new URL(normalizeUrl(url));
       return true;
     } catch {
       return false;
@@ -57,11 +65,16 @@ export function UrlManagement({
       return;
     }
 
+    const normalizedFormData = {
+      ...formData,
+      url: normalizeUrl(formData.url)
+    };
+
     if (editingId) {
-      onUpdateUrl(editingId, formData);
+      onUpdateUrl(editingId, normalizedFormData);
       setEditingId(null);
     } else {
-      onAddUrl(formData);
+      onAddUrl(normalizedFormData);
       setIsAdding(false);
     }
     
@@ -134,7 +147,7 @@ export function UrlManagement({
                   type="url"
                   value={formData.url}
                   onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-                  placeholder="https://example.com"
+                  placeholder="example.com or https://example.com"
                   required
                 />
               </div>
