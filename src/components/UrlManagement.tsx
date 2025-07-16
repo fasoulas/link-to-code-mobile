@@ -35,15 +35,6 @@ export function UrlManagement({
     return `https://${trimmed}`;
   };
 
-  const validateUrl = (url: string): boolean => {
-    try {
-      new URL(normalizeUrl(url));
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -51,15 +42,6 @@ export function UrlManagement({
       toast({
         title: "Error",
         description: "Please fill in both URL and title",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    if (!validateUrl(formData.url)) {
-      toast({
-        title: "Error",
-        description: "Please enter a valid URL",
         variant: "destructive"
       });
       return;
@@ -144,7 +126,6 @@ export function UrlManagement({
                 <Label htmlFor="url">URL</Label>
                 <Input
                   id="url"
-                  type="url"
                   value={formData.url}
                   onChange={(e) => setFormData({ ...formData, url: e.target.value })}
                   placeholder="example.com or https://example.com"
