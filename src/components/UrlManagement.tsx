@@ -63,7 +63,8 @@ export function UrlManagement({
     setFormData({ url: '', title: '' });
     toast({
       title: "Success",
-      description: editingId ? "URL updated successfully" : "URL added successfully"
+      description: editingId ? "URL updated successfully" : "URL added successfully",
+      duration: 1000
     });
   };
 
@@ -83,7 +84,8 @@ export function UrlManagement({
     onDeleteUrl(id);
     toast({
       title: "Success",
-      description: "URL deleted successfully"
+      description: "URL deleted successfully",
+      duration: 1000
     });
   };
 
