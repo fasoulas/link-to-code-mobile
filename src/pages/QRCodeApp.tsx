@@ -95,7 +95,7 @@ export default function QRCodeApp() {
             </TabsTrigger>
             <TabsTrigger value="management" className="flex items-center space-x-2">
               <Settings className="h-4 w-4" />
-              <span>Manage URLs</span>
+              <span>Manage Links</span>
             </TabsTrigger>
           </TabsList>
         </div>

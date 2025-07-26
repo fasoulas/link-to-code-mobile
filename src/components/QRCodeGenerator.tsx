@@ -92,16 +92,16 @@ export function QRCodeGenerator({ activeUrl, onAddUrl }: QRCodeGeneratorProps) {
               className="flex items-center space-x-2"
             >
               <Plus className="h-4 w-4" />
-              <span>Add URL</span>
+              <span>Add Link</span>
             </Button>
           </div>
           
           <div className="flex items-center justify-center h-96">
             <div className="text-center">
               <div className="text-6xl mb-4">📱</div>
-              <h2 className="text-xl font-semibold mb-2">No Active URL</h2>
+              <h2 className="text-xl font-semibold mb-2">No Active Link</h2>
               <p className="text-muted-foreground">
-                Add a URL to generate a QR code
+                Add a link to generate a QR code
               </p>
             </div>
           </div>

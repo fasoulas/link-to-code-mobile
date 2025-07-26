@@ -96,7 +96,7 @@ export function UrlManagement({
   return (
     <div className="p-4 max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">URL Management</h1>
+        <h1 className="text-2xl font-bold">Link Management</h1>
         <Button 
           onClick={() => setIsAdding(true)}
           className="flex items-center space-x-2"
@@ -104,14 +104,14 @@ export function UrlManagement({
           data-add-url-trigger
         >
           <Plus className="h-4 w-4" />
-          <span>Add URL</span>
+          <span>Add Link</span>
         </Button>
       </div>
 
       {(isAdding || editingId) && (
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>{editingId ? 'Edit URL' : 'Add New URL'}</CardTitle>
+            <CardTitle>{editingId ? 'Edit URL' : 'Add New Link'}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -126,7 +126,7 @@ export function UrlManagement({
                 />
               </div>
               <div>
-                <Label htmlFor="url">URL</Label>
+                <Label htmlFor="url">Link</Label>
                 <Input
                   id="url"
                   value={formData.url}
@@ -153,7 +153,7 @@ export function UrlManagement({
           <div className="flex items-center justify-center h-96">
             <div className="text-center">
               <div className="text-4xl mb-4">📝</div>
-              <p className="text-muted-foreground">No URLs saved yet. Add your first URL!</p>
+              <p className="text-muted-foreground">No links saved yet. Add your first link!</p>
             </div>
           </div>
         ) : urls.length > 0 ? (
