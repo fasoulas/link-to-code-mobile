@@ -55,6 +55,11 @@ export default function QRCodeApp() {
       ...url,
       isActive: url.id === id
     })));
+    
+    // Switch to QR code tab when selecting a URL (if there are multiple URLs)
+    if (urls.length > 1) {
+      setActiveTab('qr-code');
+    }
   };
 
   const handleAddUrl = () => {
