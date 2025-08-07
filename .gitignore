@@ -26,3 +26,10 @@ dist-ssr
 # Generated ios and android directories
 android
 ios
+
+#Firebase
+.firebase*
+firebase.json
+
+# Compiled 
+public

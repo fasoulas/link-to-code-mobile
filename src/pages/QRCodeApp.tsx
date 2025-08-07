@@ -78,7 +78,12 @@ export default function QRCodeApp() {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col min-h-screen">
         <div className="flex-1 overflow-y-auto">
           <TabsContent value="qr-code" className="mt-0 h-full">
-            <QRCodeGenerator activeUrl={activeUrl} onAddUrl={handleAddUrl} />
+            <QRCodeGenerator 
+              urls={urls}
+              activeUrl={activeUrl} 
+              onAddUrl={handleAddUrl}
+              onSetActiveUrl={setActiveUrl}
+            />
           </TabsContent>
 
           <TabsContent value="management" className="mt-0 h-full">
